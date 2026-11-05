@@ -1,0 +1,3 @@
+- insert:
+    - id: echotint-pomodoro
+      name: '@echotint/dsh-pomodoro'

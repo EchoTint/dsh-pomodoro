@@ -1,0 +1,10 @@
+node_modules/
+*.tgz
+*.log
+.env
+.env.*
+.DS_Store
+.tmp*/
+.playwright-mcp/
+state.json
+data.json

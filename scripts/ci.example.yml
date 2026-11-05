@@ -1,0 +1,27 @@
+name: Verify plugin
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test timer and package
+        run: node --test core.test.mjs packaging.test.mjs
+      - name: Verify source
+        run: node scripts/runtime-check.mjs
+      - name: Pack and verify clean distribution
+        shell: bash
+        run: |
+          archive=$(npm pack --ignore-scripts --silent)
+          mkdir unpacked
+          tar -xzf "$archive" -C unpacked
+          node unpacked/package/scripts/runtime-check.mjs --clean
+          cd unpacked/package
+          node --test core.test.mjs packaging.test.mjs

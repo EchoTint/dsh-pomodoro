@@ -1,6 +1,6 @@
 {
   "name": "@echotint/dsh-pomodoro",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "license": "MIT",
   "repository": {
@@ -13,11 +13,11 @@
   "description": "Pomodoro timer for DSH with a sidebar workspace, desktop widgets, task tracking, focus statistics, and WebDAV/S3 backups.",
   "icon": "./icon.svg",
   "engines": {
-    "dsh": "0.2.2-rc.1"
+    "dsh": ">=0.2.2-rc.1 <0.3.0"
   },
   "peerDependencies": {
     "@deepseek-ai/schemastery": "3.19.0",
-    "@deepseek-ai/dsh-credentials": "0.2.2-rc.1"
+    "@deepseek-ai/dsh-credentials": ">=0.2.2-rc.1 <0.3.0"
   },
   "exports": {
     ".": "./index.js",

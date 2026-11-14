@@ -9,9 +9,9 @@ import { requiredFiles, verifyPackage } from './scripts/runtime-check.mjs';
 const root = dirname(fileURLToPath(import.meta.url));
 test('distribution declares host peers and includes runtime resources and import closure', () => {
   const result = verifyPackage(root, { syntax: false });
-  assert.equal(result.version, '0.1.0');
+  assert.equal(result.version, '0.1.1');
   assert(result.hostImports.some(item => item.file === 'config.js' && item.specifier === '@deepseek-ai/schemastery' && item.version === '3.19.0'));
-  assert(result.hostImports.some(item => item.file === 'credentials.js' && item.specifier === '@deepseek-ai/dsh-credentials' && item.version === '0.2.2-rc.1'));
+  assert(result.hostImports.some(item => item.file === 'credentials.js' && item.specifier === '@deepseek-ai/dsh-credentials' && item.version === '>=0.2.2-rc.1 <0.3.0'));
 });
 test('clean distribution check detects a missing helper preload', () => {
   const staging = mkdtempSync(join(tmpdir(), 'pomodoro-packaging-test-'));

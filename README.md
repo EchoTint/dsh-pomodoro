@@ -1,4 +1,4 @@
-# DSH Pomodoro · 番茄钟 v0.1.0
+# DSH Pomodoro · 番茄钟 v0.1.1
 
 DSH 插件，提供侧栏计时工作台和独立桌面悬浮窗。支持番茄倒计时、正计时、心流计时、任务与子步骤、专注统计、复盘、种树奖励，以及 WebDAV / S3 备份。
 
@@ -6,10 +6,10 @@ Pomodoro timer for DeepSeek Harness with a sidebar workspace, desktop widgets, t
 
 ## 安装
 
-兼容 **DSH 0.2.2-rc.1**。在 DSH 插件管理中安装以下 GitHub Release 包并启用：
+兼容 **DSH 0.2.2-rc.1 至 0.2.2-rc.3（含 0.2.2 正式版，不含 0.3.0）**。在 DSH 插件管理中安装以下 GitHub Release 包并启用：
 
 ```text
-https://github.com/EchoTint/dsh-pomodoro/releases/download/v0.1.0/dsh-pomodoro.tgz
+https://github.com/EchoTint/dsh-pomodoro/releases/download/v0.1.1/dsh-pomodoro.tgz
 ```
 
 也可把 `https://github.com/EchoTint/dsh-pomodoro` 作为 GitHub 仓库安装源。仓库包含可直接加载的 JavaScript、`dsh.bundle` 清单和 Cordis patch，无需构建。未发布到 npm；包名为 `@echotint/dsh-pomodoro`。
@@ -53,7 +53,7 @@ $env:DSH_POMODORO_ELECTRON = 'C:\Tools\Electron\electron.exe'
 
 计时、音效、悬浮窗及非敏感备份目标通过 DSH 标准 `Config` 和 `ctx.configEditor.edit()` 保存。普通配置提交会由 Loader 重启插件，运行状态在提交前保存。旧版文件中的设置可迁移到当前条目，显式 profile 值优先。
 
-任务、专注记录、复盘与林地保存在 `$DSH_HOME/pomodoro/data.json`，计时与窗口运行状态保存在 `state.json`。旧数据的格式版本与软件版本独立，发布为 v0.1.0 不会降低数据格式版本。
+任务、专注记录、复盘与林地保存在 `$DSH_HOME/pomodoro/data.json`，计时与窗口运行状态保存在 `state.json`。旧数据的格式版本与软件版本独立，发布为 v0.1.1 不会降低数据格式版本。
 
 WebDAV 密码和 S3 secretKey 通过 `ctx.credentials` 存入 `pomodoro/webdav`、`pomodoro/s3`。旧明文先写入并读回验证，全部成功后才清除，失败可重试。空密码输入保留已有凭据；每次上传重新读取凭据，导出不包含密码。实际落盘保护取决于宿主凭据 provider。
 
@@ -61,7 +61,7 @@ WebDAV 密码和 S3 secretKey 通过 `ctx.credentials` 存入 `pomodoro/webdav`�
 
 ## 开发与验证
 
-必需宿主 peer：`@deepseek-ai/schemastery@3.19.0`、`@deepseek-ai/dsh-credentials@0.2.2-rc.1`。React 由 DSH Client 提供，Electron helper 是独立 CommonJS 应用。不要把宿主包复制进插件。
+必需宿主 peer：`@deepseek-ai/schemastery@3.19.0`、`@deepseek-ai/dsh-credentials`（`>=0.2.2-rc.1 <0.3.0`）。React 由 DSH Client 提供，Electron helper 是独立 CommonJS 应用。不要把宿主包复制进插件。
 
 Node.js 24 可运行纯逻辑和打包检查，无需安装依赖：
 

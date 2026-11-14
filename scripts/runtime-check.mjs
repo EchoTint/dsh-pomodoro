@@ -37,9 +37,9 @@ function localTarget(root, from, specifier) {
 export function verifyPackage(root, { syntax = true, clean = false } = {}) {
   root = resolve(root);
   const manifest = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
-  assert.equal(manifest.engines?.dsh, '0.2.2-rc.1');
+  assert.equal(manifest.engines?.dsh, '>=0.2.2-rc.1 <0.3.0');
   assert.equal(manifest.peerDependencies?.['@deepseek-ai/schemastery'], '3.19.0');
-  assert.equal(manifest.peerDependencies?.['@deepseek-ai/dsh-credentials'], '0.2.2-rc.1');
+  assert.equal(manifest.peerDependencies?.['@deepseek-ai/dsh-credentials'], '>=0.2.2-rc.1 <0.3.0');
   assert(!manifest.dependencies?.['@deepseek-ai/schemastery'], 'Config schema package must be a host peer');
   if (clean) assert(!existsSync(join(root, 'node_modules')), 'Clean verification must not use node_modules');
   for (const file of requiredFiles) assert(existsSync(join(root, file)), `Missing packaged file: ${file}`);
